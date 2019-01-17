@@ -3,6 +3,7 @@ package com.rnlogin;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.dooboolab.naverlogin.RNNaverLoginPackage;
 import com.dooboolab.kakaologins.RNKakaoLoginsPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.facebook.react.ReactNativeHost;
@@ -25,6 +26,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNNaverLoginPackage(),
             new RNKakaoLoginsPackage(),
             new FBSDKPackage()
       );

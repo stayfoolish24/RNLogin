@@ -10,16 +10,16 @@ import React, { Component } from 'react'
 import { Platform, StyleSheet, Text, View, Button, Alert } from 'react-native'
 import { LoginButton } from 'react-native-fbsdk'
 import RNKakaoLogins from 'react-native-kakao-logins'
+import { NaverLogin } from 'react-native-naver-login'
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu'
-})
+const initials = {
+  kConsumerKey: 'xJhsJTvkSuDYnOJqGntg',
+  kConsumerSecret: 'ySlO1ftw9w',
+  kServiceAppName: 'RNLoginNaver',
+  kServiceAppUrlScheme: 'RNLoginNaverURL' // only for iOS
+}
 
-type Props = {}
-export default class App extends Component<Props> {
+export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -31,11 +31,24 @@ export default class App extends Component<Props> {
                 Alert.alert('error', err)
                 return
               }
-              Alert.alert('result', '로그인성공')
+              Alert.alert('token', result.token)
             })
           }
           title="kakaoLogin"
         />
+        <Button
+          onPress={() =>
+            NaverLogin.login(initials, (err, token) => {
+              if (err) {
+                Alert.alert('error', err)
+                return
+              }
+              Alert.alert('result', token)
+            })
+          }
+          title="naverlogin"
+        />
+        <Button onPress={() => NaverLogin.logout()} title="naverlogout" />
       </View>
     )
   }
