@@ -20,22 +20,38 @@ const initials = {
 }
 
 export default class App extends Component {
+  // 카카오 로그인 시작.
+  _kakaoLogin() {
+    console.log('   kakaoLogin   ')
+    RNKakaoLogins.login((err, result) => {
+      if (err) {
+        Alert.alert('error', err)
+        return
+      }
+      Alert.alert('result', JSON.stringify(result))
+    })
+  }
+
+  // 로그인 후 내 프로필 가져오기.
+  _getProfile() {
+    console.log('getKakaoProfile')
+    RNKakaoLogins.getProfile((err, result) => {
+      console.log('.... ', err, result)
+
+      if (err) {
+        Alert.alert('error', err)
+        return
+      }
+      Alert.alert('result', JSON.stringify(result))
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <LoginButton />
-        <Button
-          onPress={() =>
-            RNKakaoLogins.login((err, result) => {
-              if (err) {
-                Alert.alert('error', err)
-                return
-              }
-              Alert.alert('token', result.token)
-            })
-          }
-          title="kakaoLogin"
-        />
+        <Button onPress={() => this._kakaoLogin()} title="kakaoLogin" />
+        <Button onPress={() => this._getProfile()} title="getprofilekakao" />
         <Button
           onPress={() =>
             NaverLogin.login(initials, (err, token) => {
