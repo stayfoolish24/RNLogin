@@ -7,11 +7,23 @@
  */
 
 import React, { Component } from 'react'
-import { Platform, StyleSheet, Text, View, Button, Alert } from 'react-native'
-import { LoginButton } from 'react-native-fbsdk'
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  Alert,
+  Navigator
+} from 'react-native'
 import RNKakaoLogins from 'react-native-kakao-logins'
-import { NaverLogin } from 'react-native-naver-login'
+import { NaverLogin, getProfile } from 'react-native-naver-login'
 
+const FBLoginButton = require('./FBLoginButton')
+const FBSDK = require('react-native-fbsdk')
+const { GraphRequest, GraphRequestManager } = FBSDK
+
+// 네이버 설정
 const initials = {
   kConsumerKey: 'xJhsJTvkSuDYnOJqGntg',
   kConsumerSecret: 'ySlO1ftw9w',
@@ -19,13 +31,74 @@ const initials = {
   kServiceAppUrlScheme: 'RNLoginNaverURL' // only for iOS
 }
 
-export default class App extends Component {
+class App extends Component {
+  // 네이버
+  constructor(props) {
+    super(props)
+
+    console.log('\n\n Initial Page :: src/components/pages/First/index.js \n\n')
+
+    this.state = {
+      isNaverLoggingin: false,
+      theNaverToken: 'naver token has not fetched'
+    }
+  }
+
+  // 네이버 로그인 시작.
+  async naverLoginStart() {
+    console.log('  naverLoginStart  ed')
+    NaverLogin.login(initials, (err, token) => {
+      console.log(`\n\n  Token is fetched  :: ${token} \n\n`)
+      this.setState({ theNaverToken: token })
+      if (err) {
+        console.log(err)
+        return
+      }
+    })
+  }
+
+  // 네이버 로그인 후 내 프로필 가져오기.
+  async fetchProfile() {
+    const profileResult = await getProfile(this.state.theNaverToken)
+    console.log(profileResult)
+    if (profileResult.resultcode === '024') {
+      Alert.alert('로그인 실패', profileResult.message)
+      return
+    }
+    Alert.alert('profile', JSON.stringify(profileResult))
+  }
+
+  // 페이스북
+  _responseInfoCallback(error, result) {
+    if (error) {
+      alert('Error fetching data: ' + error.toString())
+    } else {
+      console.log(result)
+
+      alert(
+        'Success fetching data. name: ' +
+          result.name +
+          ' pic.url ' +
+          result.picture.data.url
+      )
+    }
+  }
+
+  _getFBProfile() {
+    const infoRequest = new GraphRequest(
+      '/me?fields=name,picture',
+      null,
+      this._responseInfoCallback
+    )
+    new GraphRequestManager().addRequest(infoRequest).start()
+  }
+
   // 카카오 로그인 시작.
   _kakaoLogin() {
     console.log('   kakaoLogin   ')
     RNKakaoLogins.login((err, result) => {
       if (err) {
-        Alert.alert('error', err)
+        Alert.alert('error', JSON.stringify(err))
         return
       }
       Alert.alert('result', JSON.stringify(result))
@@ -36,10 +109,8 @@ export default class App extends Component {
   _getProfile() {
     console.log('getKakaoProfile')
     RNKakaoLogins.getProfile((err, result) => {
-      console.log('.... ', err, result)
-
       if (err) {
-        Alert.alert('error', err)
+        Alert.alert('error', JSON.stringify(err))
         return
       }
       Alert.alert('result', JSON.stringify(result))
@@ -47,24 +118,17 @@ export default class App extends Component {
   }
 
   render() {
+    const { theNaverToken } = this.state
     return (
       <View style={styles.container}>
-        <LoginButton />
-        <Button onPress={() => this._kakaoLogin()} title="kakaoLogin" />
-        <Button onPress={() => this._getProfile()} title="getprofilekakao" />
-        <Button
-          onPress={() =>
-            NaverLogin.login(initials, (err, token) => {
-              if (err) {
-                Alert.alert('error', err)
-                return
-              }
-              Alert.alert('result', token)
-            })
-          }
-          title="naverlogin"
-        />
-        <Button onPress={() => NaverLogin.logout()} title="naverlogout" />
+        <FBLoginButton />
+        <Button onPress={() => this._getProfile()} title="Facebook Profile" />
+        <Button onPress={() => this._kakaoLogin()} title="Kakao Login" />
+        <Button onPress={() => this._getProfile()} title="Kakao Profile" />
+        <Button onPress={() => this.naverLoginStart()} title="Naver LOGIN" />
+        <Text>{theNaverToken}</Text>
+        <Button onPress={() => this.fetchProfile()} title="Naver Profile" />
+        <Button onPress={() => NaverLogin.logout()} title="Naver logout" />
       </View>
     )
   }
@@ -76,15 +140,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF'
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5
   }
 })
+
+export default App
