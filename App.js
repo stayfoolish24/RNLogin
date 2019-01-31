@@ -68,7 +68,7 @@ class App extends Component {
     Alert.alert('profile', JSON.stringify(profileResult))
   }
 
-  // facebook
+  // 페이스북
   _responseInfoCallback(error, result) {
     if (error) {
       alert('Error fetching data: ' + error.toString())
@@ -84,7 +84,6 @@ class App extends Component {
     }
   }
 
-  // facebook profile
   _getFBProfile() {
     const infoRequest = new GraphRequest(
       '/me?fields=name,picture',
