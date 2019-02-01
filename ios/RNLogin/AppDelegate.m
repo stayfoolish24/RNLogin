@@ -9,6 +9,9 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
+#import <KakaoOpenSDK/KakaoOpenSDK.h>
+
+
 #import "NaverThirdPartyConstantsForApp.h"
 #import "NaverThirdPartyLoginConnection.h"
 
@@ -42,6 +45,10 @@
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
   NSLog(@"\n\n\n  url scheme :: %@   \n\n\n .", url.scheme);
   
+  if ([KOSession isKakaoAccountLoginCallback:url]) {
+    return [KOSession handleOpenURL:url];
+  }
+  
   return [self handleWithUrl:url];
 }
   
@@ -69,6 +76,13 @@
   return YES;
 }
   
-  
+
+
+
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    [KOSession handleDidBecomeActive];
+}
   
 @end
