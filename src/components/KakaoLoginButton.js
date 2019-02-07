@@ -56,7 +56,7 @@ class KakaoLoginButton extends Component {
   render() {
     const { KakaoToken, KakaoName, KakaoEmail } = this.state
     return (
-      <View>
+      <View style={styles.container}>
         <TouchableOpacity style={styles.button} onPress={this._kakaoLogin}>
           <Text style={styles.btnText}>Kakao Login</Text>
         </TouchableOpacity>

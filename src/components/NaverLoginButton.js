@@ -84,30 +84,30 @@ class NaverLoginButton extends Component {
     }
   }
 
-  _onNaverLogout = async () => {
-    try {
-      await NaverLogin.logout()
-      Alert.alert('result', 'logout')
-      this.setState({
-        NaverToken: 'naver token has not fetched',
-        NaverName: 'naver name has not fetched',
-        NaverEmail: 'naver email has not fetched'
-      })
-    } catch (err) {
-      console.log('error')
-      console.log(err)
-    }
-  }
-
-  // _onNaverLogout = () => {
-  //   NaverLogin.logout()
-  //   this.setState({
-  //     NaverToken: 'naver token has not fetched',
-  //     NaverName: 'naver name has not fetched',
-  //     NaverEmail: 'naver email has not fetched'
-  //   })
-  //   Alert.alert('result', 'logout')
+  // _onNaverLogout = async () => {
+  //   try {
+  //     await NaverLogin.logout()
+  //     Alert.alert('result', 'logout')
+  //     this.setState({
+  //       NaverToken: 'naver token has not fetched',
+  //       NaverName: 'naver name has not fetched',
+  //       NaverEmail: 'naver email has not fetched'
+  //     })
+  //   } catch (err) {
+  //     console.log('error')
+  //     console.log(err)
+  //   }
   // }
+
+  _onNaverLogout = () => {
+    NaverLogin.logout()
+    this.setState({
+      NaverToken: 'naver token has not fetched',
+      NaverName: 'naver name has not fetched',
+      NaverEmail: 'naver email has not fetched'
+    })
+    Alert.alert('result', 'logout')
+  }
 
   render() {
     const { NaverToken, NaverName, NaverEmail } = this.state
