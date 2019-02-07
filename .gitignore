@@ -54,3 +54,12 @@ buck-out/
 
 # Bundle artifact
 *.jsbundle
+
+
+# FBSDK
+ios/Frameworks/
+Bolts.framework
+FBSDKCoreKit.framework
+FBSDKLoginKit.framework
+FBSDKShareKit.framework
+
