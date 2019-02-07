@@ -73,8 +73,8 @@ class FacebookLoginButton extends Component {
           onLogoutFinished={this._facebookLogout}
         />
         <Text> {FacebookToken}</Text>
-        <Text> {FacebookName}</Text>
-        <Text> {FacebookEmail}</Text>
+        <Text> 이름: {FacebookName}</Text>
+        <Text> 이메일: {FacebookEmail}</Text>
         <TouchableOpacity style={styles.button} onPress={this._getFBProfile}>
           <Text style={styles.btnText}>Facebook Profile</Text>
         </TouchableOpacity>
