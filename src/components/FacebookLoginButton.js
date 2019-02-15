@@ -35,7 +35,7 @@ class FacebookLoginButton extends Component {
     if (error) {
       alert('Error fetching data: ' + error.message)
     } else {
-      alert(result.name + result.email + result.picture.data.url)
+      alert(result.id + result.name + result.email + result.picture.data.url)
       this.setState({
         FacebookName: result.name,
         FacebookEmail: result.email
@@ -46,7 +46,7 @@ class FacebookLoginButton extends Component {
   // get profile
   _getFBProfile = () => {
     const infoRequest = new GraphRequest(
-      '/me?fields=name,picture,email',
+      '/me?fields=id,name,picture,email',
       null,
       this._responseInfoCallback
     )
