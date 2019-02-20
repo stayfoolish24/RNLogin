@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, View } from 'react-native'
-import FacebookLoginButton from './src/components/FacebookLoginButton'
+import FacebookLoginButton from './src/components/FacebookLoginButton1'
 import KakaoLoginButton from './src/components/KakaoLoginButton'
 import NaverLoginButton from './src/components/NaverLoginButton'
 
