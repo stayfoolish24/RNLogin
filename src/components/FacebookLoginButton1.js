@@ -38,25 +38,15 @@ class FacebookLoginButton extends Component {
   _handleFacebookLogin2 = () => {
     LoginManager.logInWithReadPermissions(['public_profile', 'email']).then(
       (result, error) => {
-        if (result.isCancelled) {
-          console.log('Login cancelled')
-        } else {
-          console.log(
-            'Login success with permissions: ' +
-              result.grantedPermissions.toString()
-          )
-        }
         if (error) {
-          console.log('Login fail with error: ' + error)
+          alert('Login failed with error: ' + error.message)
+        } else if (result.isCancelled) {
+          alert('Login was cancelled')
+        } else {
+          this._getFBProfile()
         }
       }
     )
-    //   function(error) {
-    //     console.log('Login fail with error: ' + error)
-    //   }
-    // )
-
-    // .then(this._getFBProfile())
   }
 
   _facebookLogin = (error, result) => {
