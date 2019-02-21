@@ -15,25 +15,25 @@ class FacebookLoginButton extends Component {
     FacebookEmail: 'Facebook email has not fetched'
   }
 
-  _handleFacebookLogin = () => {
-    LoginManager.logInWithReadPermissions(['public_profile', 'email'])
-      .then(
-        function(result) {
-          if (result.isCancelled) {
-            console.log('Login cancelled')
-          } else {
-            console.log(
-              'Login success with permissions: ' +
-                result.grantedPermissions.toString()
-            )
-          }
-        },
-        function(error) {
-          console.log('Login fail with error: ' + error)
-        }
-      )
-      .then(this._getFBProfile())
-  }
+  // _handleFacebookLogin = () => {
+  //   LoginManager.logInWithReadPermissions(['public_profile', 'email'])
+  //     .then(
+  //       function(result) {
+  //         if (result.isCancelled) {
+  //           console.log('Login cancelled')
+  //         } else {
+  //           console.log(
+  //             'Login success with permissions: ' +
+  //               result.grantedPermissions.toString()
+  //           )
+  //         }
+  //       },
+  //       function(error) {
+  //         console.log('Login fail with error: ' + error)
+  //       }
+  //     )
+  //     .then(this._getFBProfile())
+  // }
 
   _handleFacebookLogin2 = () => {
     LoginManager.logInWithReadPermissions(['public_profile', 'email']).then(
@@ -89,37 +89,37 @@ class FacebookLoginButton extends Component {
     new GraphRequestManager().addRequest(infoRequest).start()
   }
 
-  _facebookLogout = () => {
-    this.setState({
-      FacebookToken: 'Facebook token has not fetched',
-      FacebookName: 'Facebook name has not fetched',
-      FacebookEmail: 'Facebook email has not fetched'
-    })
-    alert('User logged out')
-  }
+  // _facebookLogout = () => {
+  //   this.setState({
+  //     FacebookToken: 'Facebook token has not fetched',
+  //     FacebookName: 'Facebook name has not fetched',
+  //     FacebookEmail: 'Facebook email has not fetched'
+  //   })
+  //   alert('User logged out')
+  // }
 
   render() {
     const { FacebookToken, FacebookName, FacebookEmail } = this.state
     return (
       <View style={styles.container}>
-        <LoginButton
+        {/* <LoginButton
           readPermissions={['public_profile', 'email']}
           onLoginFinished={this._facebookLogin}
           // onLogoutFinished={() => alert('User logged out')}
           onLogoutFinished={this._facebookLogout}
-        />
-        <Text> {FacebookToken}</Text>
-        <Text> 이름: {FacebookName}</Text>
-        <Text> 이메일: {FacebookEmail}</Text>
-        <TouchableOpacity style={styles.button} onPress={this._getFBProfile}>
-          <Text style={styles.btnText}>Facebook Profile</Text>
-        </TouchableOpacity>
+        /> */}
         <TouchableOpacity
           style={styles.button}
           onPress={this._handleFacebookLogin2}
         >
           <Text style={styles.btnText}>Facebook Login</Text>
         </TouchableOpacity>
+        <Text> {FacebookToken}</Text>
+        <Text> 이름: {FacebookName}</Text>
+        <Text> 이메일: {FacebookEmail}</Text>
+        {/* <TouchableOpacity style={styles.button} onPress={this._getFBProfile}>
+          <Text style={styles.btnText}>Facebook Profile</Text>
+        </TouchableOpacity> */}
       </View>
     )
   }
