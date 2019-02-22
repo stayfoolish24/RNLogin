@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, TouchableOpacity, StyleSheet, Text } from 'react-native'
 import {
-  LoginButton,
+  // LoginButton,
   AccessToken,
   GraphRequest,
   GraphRequestManager,
@@ -35,6 +35,7 @@ class FacebookLoginButton extends Component {
   //     .then(this._getFBProfile())
   // }
 
+  // 임시 테스트 중
   _handleFacebookLogin2 = () => {
     LoginManager.logInWithReadPermissions(['public_profile', 'email']).then(
       (result, error) => {
