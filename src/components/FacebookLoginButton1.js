@@ -15,25 +15,25 @@ class FacebookLoginButton extends Component {
     FacebookEmail: 'Facebook email has not fetched'
   }
 
-  // _handleFacebookLogin = () => {
-  //   LoginManager.logInWithReadPermissions(['public_profile', 'email'])
-  //     .then(
-  //       function(result) {
-  //         if (result.isCancelled) {
-  //           console.log('Login cancelled')
-  //         } else {
-  //           console.log(
-  //             'Login success with permissions: ' +
-  //               result.grantedPermissions.toString()
-  //           )
-  //         }
-  //       },
-  //       function(error) {
-  //         console.log('Login fail with error: ' + error)
-  //       }
-  //     )
-  //     .then(this._getFBProfile())
-  // }
+  _handleFacebookLogin = () => {
+    LoginManager.logInWithReadPermissions(['public_profile', 'email'])
+      .then(
+        function(result) {
+          if (result.isCancelled) {
+            console.log('Login cancelled')
+          } else {
+            console.log(
+              'Login success with permissions: ' +
+                result.grantedPermissions.toString()
+            )
+          }
+        },
+        function(error) {
+          console.log('Login fail with error: ' + error)
+        }
+      )
+      .then(this._getFBProfile())
+  }
 
   // 임시 테스트 중
   _handleFacebookLogin2 = () => {
