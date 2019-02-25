@@ -63,6 +63,7 @@ class KakaoLoginButton extends Component {
         <Text>{KakaoToken}</Text>
         <Text>{KakaoName}</Text>
         <Text>{KakaoEmail}</Text>
+
         <TouchableOpacity style={styles.button} onPress={this._getKakaoProfile}>
           <Text style={styles.btnText}>Kakao Profile</Text>
         </TouchableOpacity>
