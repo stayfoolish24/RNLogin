@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native'
 import FacebookLoginButton from './src/components/FacebookLoginButton1'
 import KakaoLoginButton from './src/components/KakaoLoginButton'
 import NaverLoginButton from './src/components/NaverLoginButton'
+import Push from './src/components/Push'
 
 class App extends Component {
   render() {
@@ -11,6 +12,7 @@ class App extends Component {
         <FacebookLoginButton />
         <KakaoLoginButton />
         <NaverLoginButton />
+        <Push />
       </View>
     )
   }
