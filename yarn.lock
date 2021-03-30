@@ -647,6 +647,13 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
+"@react-native-community/push-notification-ios@^1.2.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/push-notification-ios/-/push-notification-ios-1.8.0.tgz#7d43cb37b9e644ff3069aafa91befe71688a2dc4"
+  integrity sha512-vxvkeampafjmtDoQBN8Q4azP21l6cMX93+OQZemyIWZmG++OjCVDQVitobf/kWLm5zyGwdylejbpMGo75qo7rA==
+  dependencies:
+    invariant "^2.2.4"
+
 abab@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.0.tgz#aba0ab4c5eee2d4c79d3487d85450fb2376ebb0f"
@@ -1747,6 +1754,11 @@ domexception@^1.0.1:
   integrity sha512-raigMkn7CJNNo6Ihro1fzG7wr3fHuYVytzquZKX5n0yizGsTcYgzdIUwj1X9pK0VvjeihV+XiclP+DjwbsSKug==
   dependencies:
     webidl-conversions "^4.0.2"
+
+dooboolab-welcome@^1.0.5, dooboolab-welcome@^1.1.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/dooboolab-welcome/-/dooboolab-welcome-1.2.0.tgz#295818ce85a8e97dc90c0ec0510b4008e2d722dc"
+  integrity sha512-XgEbjJHAsKLge/e8jtuHsv84Ovg1Gx0GvnOTOmOlVGV1643nduTAkT3fyo/mxKbzvyXBr47RHaJAY4R2toI0UA==
 
 duplexer3@^0.1.4:
   version "0.1.4"
@@ -4701,6 +4713,27 @@ react-native-fbsdk@^0.8.0:
     pump "^1.0.2"
     xcode "^0.9.3"
 
+react-native-kakao-logins@^1.3.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-kakao-logins/-/react-native-kakao-logins-1.4.0.tgz#5b1ba44ece100699f0a956187201b5ba5338f227"
+  integrity sha512-cfSxIDRsMkdlcDp1JSMYoxRp0At9IBszrfYKbupJ5BF2yL/b8vhjpHHIJ4wuHrf9TezVKyWDZ0705Uk7FUzJBQ==
+  dependencies:
+    dooboolab-welcome "^1.1.0"
+
+react-native-naver-login@^1.2.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-naver-login/-/react-native-naver-login-1.4.0.tgz#52e1f4d9309c1f4f9c97253442d86af14b9e5ef2"
+  integrity sha512-j15EKqmh2JkDtRXiZzXkYLbSLYgWkZLgAjjSVJGMSt1Td2ZYWfv+CZPLf5OCCot80PNp7cop8baTNGVVSUBdJA==
+  dependencies:
+    dooboolab-welcome "^1.0.5"
+
+react-native-push-notification@^3.1.2:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/react-native-push-notification/-/react-native-push-notification-3.5.2.tgz#5f6226d12a00c25c15279325b57c5fbddd5b1c82"
+  integrity sha512-eh9l7WeL7Lxq17ntsafCrNQF6aW8XS6b7PG/s1Y8amAqpDt8GJ8hz125z566N1jsj3PDh9pfd4SjNS+tLaV47A==
+  dependencies:
+    "@react-native-community/push-notification-ios" "^1.2.0"
+
 react-native@0.57.8:
   version "0.57.8"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.57.8.tgz#1a840fbe144cd3902cc14313a783ce28efc48cb9"
@@ -6044,9 +6077,9 @@ xtend@~4.0.1:
   integrity sha1-pcbVMr5lbiPbgg77lDofBJmNY68=
 
 y18n@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/y18n/-/y18n-3.2.1.tgz#6d15fba884c08679c0d77e88e7759e811e07fa41"
-  integrity sha1-bRX7qITAhnnA136I53WegR4H+kE=
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/y18n/-/y18n-3.2.2.tgz#85c901bd6470ce71fc4bb723ad209b70f7f28696"
+  integrity sha512-uGZHXkHnhF0XeeAPgnKfPv1bgKAYyVvmNL1xlKsPYZPaIHxGti2hHqvOCQv71XMsLxu1QjergkqogUnms5D3YQ==
 
 yallist@^2.1.2:
   version "2.1.2"
